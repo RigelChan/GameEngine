@@ -3,7 +3,7 @@ import sys
 from constants import Constants
 
 
-class Scene:
+class Scene: #  This is the abstract class we base all other scenes upon.
     def __init__(self):
         pass
     def update(self, sm):

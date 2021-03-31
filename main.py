@@ -5,7 +5,7 @@ import ctypes
 from constants import Constants
 from scene import SceneManager, MainMenu
 
-ctypes.windll.user32.SetProcessDPIAware() # Makes the window the correct size irrelevant of Windows 10 scale settings.
+ctypes.windll.user32.SetProcessDPIAware()  # Makes the window the correct size irrelevant of Windows 10 scale settings.
 
 
 class Game:
@@ -39,6 +39,7 @@ class Game:
             self.draw_screen()
             self.update()
             dt = self.clock.tick(60)/1000
+
 
 if __name__ == "__main__":
     g = Game()
