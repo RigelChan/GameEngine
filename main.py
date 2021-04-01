@@ -13,7 +13,7 @@ class Game:
         self.c = Constants()
         self.sm = SceneManager()
         self.mm = MainMenu()
-        self.sm.push(self.mm)
+        self.sm.push(self.mm) # Pushing here makes sure the object types are consistent.
         pygame.init()
         pygame.mixer.pre_init(frequency=44100, size=16, channels=2, buffer=312)
 

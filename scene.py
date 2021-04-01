@@ -1,5 +1,6 @@
 import pygame
 import sys
+import utils
 from constants import Constants
 
 
@@ -8,9 +9,9 @@ class Scene: #  This is the abstract class we base all other scenes upon.
         pass
     def update(self, sm):
         pass
-    def enter(self):
+    def enter(self):  # TODO Make sure to add these messages to the scene classes.
         pass
-    def exit(self):
+    def exit(self): # TODO Make sure to add these messages to the scene classes.
         pass
     def input(self, sm):
         pass
@@ -23,19 +24,24 @@ class MainMenu(Scene):
 
     def draw(self, sm, screen): # We pass in sm referring to its instance within the scene manager.
         screen.fill(self.c.black)
-        font = pygame.font.SysFont(None, 120)
-        img = font.render('Main Menu: [A] to Game', True, (0, 255, 255))
-        screen.blit(img, (20, 20))
+        utils.draw_text(screen, "Main Menu")
+        utils.draw_text(screen, "Click [G] for Game", pos=(20, 300))  # Choosing which parameter we want to customize.
+        utils.draw_text(screen, "Click [S] for Settings", pos=(20, 550))
+        utils.draw_text(screen, "Click [Q] to Quit", pos=(20, 800))
+        
 
     def input(self, sm):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(0)
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_g:
                     print("Moved to Game.")
-                    # sm.pop()
                     sm.push(FadeTransitionScene(self, Game()))
+                if event.key == pygame.K_s:
+                    sm.push(FadeTransitionScene(self, SettingsMenu()))
+                if event.key == pygame.K_q:
+                    sys.exit(0)
 
 class Game(Scene):
     def __init__(self):
@@ -43,19 +49,33 @@ class Game(Scene):
 
     def draw(self, sm, screen):
         screen.fill(self.c.black)
-        font = pygame.font.SysFont(None, 120)
-        img = font.render('Game: [C] to Menu', True, (255, 0, 255))
-        screen.blit(img, (20, 20))
+        utils.draw_text(screen, "Game: [M] to Menu")
 
     def input(self, sm):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(0)
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_c:
-                    print("Moved to Menu.")
+                if event.key == pygame.K_m:
                     sm.pop()
-                    sm.push(FadeTransitionScene(self, None))
+                    sm.push(FadeTransitionScene(self, None)) # We pass none as we are not transitiong to a *new* scene.
+
+class SettingsMenu(Scene):
+    def __init__(self):
+        self.c = Constants()
+        
+    def draw(self, sm, screen):
+        screen.fill(self.c.black)
+        utils.draw_text(screen, "Game: [M] to Menu")
+        
+    def input(self, sm):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit(0)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_m:
+                    sm.pop()
+                    sm.push(FadeTransitionScene(self, None)) 
 
 class TransitionScene(Scene):
     def __init__(self, fromScene, toScene):

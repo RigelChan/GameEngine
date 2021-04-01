@@ -1,7 +1,7 @@
 import pygame
 
 
-def draw_text(screen, text, colour, font, size, xpos, ypos):
+def draw_text(screen, text, colour=(255,255,255), font=None, size=120, pos=(20,20)): #  Default parameters :D!
     font = pygame.font.SysFont(font, size)
-    x = font.render(str(text), True, colour)
-    screen.blit(x, (xpos, ypos))
+    x = font.render(text, True, colour)
+    screen.blit(x, pos)

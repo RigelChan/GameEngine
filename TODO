@@ -1,4 +1,5 @@
 Thursday 1st of April:
+  [] Add exit and enter methods to the menu, game and settings menu classes. @low @10m
   [] 8 directional player movement. @30m @today
   [] Have this movement be incorporated with delta time. @high @30m
 Friday 2nd of April:
@@ -7,7 +8,7 @@ Friday 2nd of April:
 Minimal Viable Product:
   Feature List:
     [x] Scene transitions. @critical
-    [] Basic player movement system. @critical
+    [] Player movement system. @critical
     [] Delta-time (frame-rate independent). @critical
     [] A Menu with a Settings screen where you can adjust various parameters (such as resolution). @low
     [] Player Animation. @high 
