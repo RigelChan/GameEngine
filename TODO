@@ -1,9 +1,11 @@
 Thursday 1st of April:
-  [] Add exit and enter methods to the menu, game and settings menu classes. @low @10m
+  [x] Add exit and enter methods to the menu, game and settings menu classes. @low @10m
   [] 8 directional player movement. @30m @today
   [] Have this movement be incorporated with delta time. @high @30m
 Friday 2nd of April:
   [] Menu with options for resizing a window? @low @3h
+Saturday 3rd of April:
+  [] Make the scene manger its own file. @high @1h
 
 Minimal Viable Product:
   Feature List:

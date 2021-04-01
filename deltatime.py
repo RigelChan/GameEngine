@@ -19,10 +19,10 @@ TRANSPARENT = (0, 0, 0, 0)
 BACKGROUND_COLOR = pg.Color("darkslategrey")
 
 
-DIRECT_DICT = {pg.K_LEFT  : (-1, 0),
-               pg.K_RIGHT : ( 1, 0),
-               pg.K_UP    : ( 0,-1),
-               pg.K_DOWN  : ( 0, 1)}
+DIRECT_DICT = {pg.K_a  : (-1, 0),
+               pg.K_d : ( 1, 0),
+               pg.K_w    : ( 0,-1),
+               pg.K_s  : ( 0, 1)}
 
 
 class Player(object):

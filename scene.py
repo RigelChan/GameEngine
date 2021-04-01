@@ -9,9 +9,9 @@ class Scene: #  This is the abstract class we base all other scenes upon.
         pass
     def update(self, sm):
         pass
-    def enter(self):  # TODO Make sure to add these messages to the scene classes.
+    def enter(self):
         pass
-    def exit(self): # TODO Make sure to add these messages to the scene classes.
+    def exit(self):
         pass
     def input(self, sm):
         pass
@@ -36,12 +36,17 @@ class MainMenu(Scene):
                 sys.exit(0)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_g:
-                    print("Moved to Game.")
                     sm.push(FadeTransitionScene(self, Game()))
                 if event.key == pygame.K_s:
                     sm.push(FadeTransitionScene(self, SettingsMenu()))
                 if event.key == pygame.K_q:
                     sys.exit(0)
+                    
+    def exit(self):
+        print("Leaving Main Menu.")
+        
+    def enter(self):
+        print("Entering Main Menu.")
 
 class Game(Scene):
     def __init__(self):
@@ -60,6 +65,12 @@ class Game(Scene):
                     sm.pop()
                     sm.push(FadeTransitionScene(self, None)) # We pass none as we are not transitiong to a *new* scene.
 
+    def exit(self):
+        print("Leaving Game.")
+    
+    def enter(self):
+        print("Entering Game.")
+
 class SettingsMenu(Scene):
     def __init__(self):
         self.c = Constants()
@@ -76,6 +87,12 @@ class SettingsMenu(Scene):
                 if event.key == pygame.K_m:
                     sm.pop()
                     sm.push(FadeTransitionScene(self, None)) 
+                    
+    def exit(self):
+        print("Leaving Settings.")
+    
+    def enter(self):
+        print("Entering Settings.")
 
 class TransitionScene(Scene):
     def __init__(self, fromScene, toScene):
@@ -89,6 +106,12 @@ class TransitionScene(Scene):
             sm.pop() # Pops itself when the transition is finished.
             if self.toScene is not None:
                 sm.push(self.toScene) # Pushes the next scene onto the stack and displays it.
+                
+    def exit(self):
+        print("Leaving Transition.")
+    
+    def enter(self):
+        print("Entering Transition.")
 
 class FadeTransitionScene(TransitionScene):
     def draw(self, sm, screen):
@@ -132,15 +155,15 @@ class SceneManager:
             self.scenes[-1].enter()
 
     def pop(self):
-        # self.sceneExit()
+        self.sceneExit()
         self.scenes.pop()
-        # self.sceneEnter()
+        self.sceneEnter()
         print(self.scenes)
 
     def push(self, scene):
-        # self.sceneExit()
+        self.sceneExit()
         self.scenes.append(scene)
-        # self.sceneEnter()
+        self.sceneEnter()
         print(self.scenes)
 
     def set(self, scene):
