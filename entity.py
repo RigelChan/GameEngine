@@ -9,7 +9,7 @@ class Entity:
     def draw(self, screen):
         pass
         
-    def update(self, dt=1):  # Default to dt to 1 so you don't need it, but can implement it if you want.
+    def update(self, dt=1):
         pass
     
     def input(self):
@@ -33,7 +33,7 @@ class Player(Entity):
     def draw(self, screen):
         screen.blit(self.sprite, (self.x, self.y))
         
-    def update(self, dt=1):
+    def update(self, dt):
         if self.moving_up:
             self.y -= self.speed * dt
         if self.moving_left:

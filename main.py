@@ -16,6 +16,8 @@ class Game:
         self.sm.push(self.mm) # Pushing here makes sure the object types are consistent.
         pygame.init()
         pygame.mixer.pre_init(frequency=44100, size=16, channels=2, buffer=312)
+        
+        self.dt = 0
 
         self.screen = pygame.display.set_mode((self.c.screen_width, self.c.screen_height))
         self.screen_rect = self.screen.get_rect()
@@ -31,15 +33,14 @@ class Game:
         self.sm.input()
 
     def update(self):
-        self.sm.update()
+        self.sm.update(self.dt)
 
     def run(self):
-        dt = 0
         while True:
             self.check_events()
             self.draw_screen()
             self.update()
-            dt = self.clock.tick(60)/1000
+            self.dt = self.clock.tick(60)/1000
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ from entity import Player
 class Scene: #  This is the abstract class we base all other scenes upon.
     def __init__(self):
         pass
-    def update(self, sm):
+    def update(self, sm, dt=1):  # By passing 1 we make delta time an optional parameter.
         pass
     def enter(self):
         pass
@@ -29,6 +29,9 @@ class MainMenu(Scene):
         utils.draw_text(screen, "Click [G] for Game", pos=(20, 300))  # Choosing which parameter we want to customize.
         utils.draw_text(screen, "Click [S] for Settings", pos=(20, 550))
         utils.draw_text(screen, "Click [Q] to Quit", pos=(20, 800))
+        
+    def update(self, sm, dt):
+        pass
         
 
     def input(self, sm):
@@ -52,7 +55,7 @@ class MainMenu(Scene):
 class Game(Scene):
     def __init__(self):
         self.c = Constants()
-        self.player = Player(self.c.screen_width/2, self.c.screen_height/2, 10)
+        self.player = Player(self.c.screen_width/2, self.c.screen_height/2, 300)
 
     def draw(self, sm, screen):
         screen.fill(self.c.black)
@@ -86,8 +89,8 @@ class Game(Scene):
                     self.player.moving_right = False
                 
                        
-    def update(self, sm):
-        self.player.update()
+    def update(self, sm, dt):
+        self.player.update(dt)
 
     def exit(self):
         print("Leaving Game.")
@@ -124,7 +127,7 @@ class TransitionScene(Scene):
         self.currentPercentage = 0
         self.fromScene = fromScene
         self.toScene = toScene
-    def update(self, sm):
+    def update(self, sm, dt):
         self.currentPercentage += 4
         if self.currentPercentage >= 100:
             sm.pop() # Pops itself when the transition is finished.
@@ -161,9 +164,9 @@ class SceneManager:
         if len(self.scenes) > 0:
             self.scenes[-1].input(self)
 
-    def update(self):
+    def update(self, dt):
         if len(self.scenes) > 0:
-            self.scenes[-1].update(self)
+            self.scenes[-1].update(self, dt)
 
     def draw(self, screen):
         if len(self.scenes) > 0:
