@@ -2,6 +2,7 @@ import pygame
 import sys
 import utils
 from constants import Constants
+from entity import Player
 
 
 class Scene: #  This is the abstract class we base all other scenes upon.
@@ -51,10 +52,12 @@ class MainMenu(Scene):
 class Game(Scene):
     def __init__(self):
         self.c = Constants()
+        self.player = Player(self.c.screen_width/2, self.c.screen_height/2, 10)
 
     def draw(self, sm, screen):
         screen.fill(self.c.black)
         utils.draw_text(screen, "Game: [M] to Menu")
+        self.player.draw(screen)
 
     def input(self, sm):
         for event in pygame.event.get():
@@ -64,6 +67,27 @@ class Game(Scene):
                 if event.key == pygame.K_m:
                     sm.pop()
                     sm.push(FadeTransitionScene(self, None)) # We pass none as we are not transitiong to a *new* scene.
+                if event.key == pygame.K_w:
+                    self.player.moving_up = True
+                if event.key == pygame.K_s:
+                    self.player.moving_down = True
+                if event.key == pygame.K_a:
+                    self.player.moving_left = True
+                if event.key == pygame.K_d:
+                    self.player.moving_right = True
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    self.player.moving_up = False
+                if event.key == pygame.K_s:
+                    self.player.moving_down = False
+                if event.key == pygame.K_a:
+                    self.player.moving_left = False
+                if event.key == pygame.K_d:
+                    self.player.moving_right = False
+                
+                       
+    def update(self, sm):
+        self.player.update()
 
     def exit(self):
         print("Leaving Game.")

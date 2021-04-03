@@ -18,6 +18,7 @@ class Game:
         pygame.mixer.pre_init(frequency=44100, size=16, channels=2, buffer=312)
 
         self.screen = pygame.display.set_mode((self.c.screen_width, self.c.screen_height))
+        self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption("Game")
         self.fps = 60
         self.clock = pygame.time.Clock()

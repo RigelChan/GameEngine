@@ -1,3 +1,3 @@
 class Graphics:
     def __init__(self):
-        pass
+        self.player = "assets/player.png"
