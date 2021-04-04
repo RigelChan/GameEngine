@@ -3,7 +3,8 @@ import sys
 import time
 import ctypes
 from constants import Constants
-from scene import SceneManager, MainMenu
+from scenes import MainMenu
+from utils import SceneManager
 
 ctypes.windll.user32.SetProcessDPIAware()  # Makes the window the correct size irrelevant of Windows 10 scale settings.
 
