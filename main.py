@@ -7,7 +7,6 @@ from scene import SceneManager, MainMenu
 
 ctypes.windll.user32.SetProcessDPIAware()  # Makes the window the correct size irrelevant of Windows 10 scale settings.
 
-
 class Game:
     def __init__(self):
         self.c = Constants()
@@ -19,7 +18,8 @@ class Game:
         
         self.dt = 0
 
-        self.screen = pygame.display.set_mode((self.c.screen_width, self.c.screen_height))
+        # Doublebuf makes use of a better memory management, thus it will increase performance.
+        self.screen = pygame.display.set_mode((self.c.screen_width, self.c.screen_height), pygame.DOUBLEBUF) 
         self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption("Game")
         self.fps = 60

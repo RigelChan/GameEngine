@@ -1,7 +1,3 @@
-Ideas to do Today:
-  [x] Add exit and enter methods to the menu, game and settings menu classes. @low @10m
-  [x] 8 directional player movement. @30m @today
-  [] Have this movement be incorporated with delta time. @high @30m
 Ideas for Later:
   [] Menu with options for resizing a window? @low
   [] Make the scene manger its own file. @high 
@@ -11,7 +7,7 @@ Features I Want in the Framework:
   Feature List:
     [x] Scene transitions. @critical
     [x] Player movement system. @critical
-    [] Delta-time (frame-rate independent). @critical
+    [x] Delta-time (frame-rate independent). @critical
     [] A Menu with a Settings screen where you can adjust various parameters (such as resolution). @low
     [] Player Animation. @high 
     [] Sprite sheets.

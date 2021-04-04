@@ -8,7 +8,7 @@ from entity import Player
 class Scene: #  This is the abstract class we base all other scenes upon.
     def __init__(self):
         pass
-    def update(self, sm, dt=1):  # By passing 1 we make delta time an optional parameter.
+    def update(self, sm, dt):
         pass
     def enter(self):
         pass
@@ -87,8 +87,7 @@ class Game(Scene):
                     self.player.moving_left = False
                 if event.key == pygame.K_d:
                     self.player.moving_right = False
-                
-                       
+                                
     def update(self, sm, dt):
         self.player.update(dt)
 
